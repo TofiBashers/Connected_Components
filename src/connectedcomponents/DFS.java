@@ -12,36 +12,40 @@ import java.util.Iterator;
  *
  * @author TofixXx
  */
+
+/** Realization of Depth-First Search algorithm, that calculates 
+ * connected components number in undirected graph.
+ */
 public class DFS {
 
-    boolean marked[];
-    HashSet<Integer> AdjList[];
-    int CompsNum;
+    private boolean marked[];
+    private HashSet<Integer>[] adjList;
+    private int componentsNum;
 
-    DFS(HashSet<Integer> AList[], int V, int E) {
-        AdjList = AList;
+    DFS(HashSet<Integer>[] aList, int V, int E) {
+        adjList = aList;
         marked = new boolean[V + 1];
         for (int i = 1; i < V + 1; i++) {
             if (!marked[i]) {
                 marked[i] = true;
-                CompsNum++;
-                Search(i);
+                componentsNum++;
+                search(i);
             }
         }
     }
 
-    private void Search(int v) {
-        Iterator<Integer> it = AdjList[v].iterator();
+    private void search(int v) {
+        Iterator<Integer> it = adjList[v].iterator();
         while (it.hasNext()) {
             int s = it.next();
             if (!marked[s]) {
                 marked[s] = true;
-                Search(s);
+                search(s);
             }
         }
     }
 
-    public int CompsNum() {
-        return CompsNum;
+    public int getComponentsNum() {
+        return componentsNum;
     }
 }

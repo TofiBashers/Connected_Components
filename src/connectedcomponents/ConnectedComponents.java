@@ -17,13 +17,13 @@ import java.util.Iterator;
  *
  * @author TofixXx
  */
+
+/** Solution for searching number of connected components
+ *  in undirected graph
+ */
 public class ConnectedComponents {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
 
         try (BufferedReader reader = new BufferedReader(new FileReader("rosalind_cc.txt"));
                 FileWriter writer = new FileWriter(new File("output.txt"))) {
@@ -42,7 +42,7 @@ public class ConnectedComponents {
                 AdjList[b].add(a);
             }
             DFS dfs = new DFS(AdjList, V, E);
-            writer.write(Integer.toString(dfs.CompsNum()));
+            writer.write(Integer.toString(dfs.getComponentsNum()));
             writer.flush();
         } catch (IOException e) {
             e.printStackTrace();
